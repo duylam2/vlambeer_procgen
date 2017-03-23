@@ -12,21 +12,23 @@ public class Pathmaker : MonoBehaviour {
 	float probToTurnRight;
 	float probToTurnLeft;
 	float probToSpawn;
+	int lifeSpan;
 
 	public static int globalFloorCount = 0;
 
 	// Use this for initialization
 	void Start () {
 		counter = 0;
-		probToTurnRight = Random.Range (0.05f, 0.075f);
+		probToTurnRight = Random.Range (0.05f, 0.06f);
 		probToTurnLeft = Random.Range (0.2f, 0.3f);
-		probToSpawn = Random.Range (0.97f, 0.99f);
+		probToSpawn = Random.Range (0.98f, 0.99f);
+		lifeSpan = Random.Range (30, 35);
 		//this.gameObject.SetActive (true);
 	}
 
 	// Update is called once per frame
 	void Update () {
-		if (counter < 50 && globalFloorCount <= 500) {
+		if (counter < lifeSpan && globalFloorCount <= 500) {
 			float randomNumber = Random.Range (0f, 1f);
 			if (randomNumber < 0.98f) {
 				if (randomNumber < probToTurnRight) {
