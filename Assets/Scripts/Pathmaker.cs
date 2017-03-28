@@ -9,6 +9,8 @@ public class Pathmaker : MonoBehaviour {
 	public Transform floorPrefab;
 	public Transform spherePrefab;
 
+	public GameObject[] myPrefabs = new GameObject[3];
+
 	float probToTurnRight;
 	float probToTurnLeft;
 	float probToSpawn;
@@ -23,8 +25,11 @@ public class Pathmaker : MonoBehaviour {
 		probToTurnLeft = Random.Range (0.2f, 0.3f);
 		probToSpawn = Random.Range (0.98f, 0.99f);
 		lifeSpan = Random.Range (30, 35);
+
+
 		//this.gameObject.SetActive (true);
 	}
+		
 
 	// Update is called once per frame
 	void Update () {
@@ -39,8 +44,16 @@ public class Pathmaker : MonoBehaviour {
 			} else if (randomNumber >= probToSpawn) {
 				Instantiate (spherePrefab, transform.position, Quaternion.identity);
 			}
-
-			Instantiate (floorPrefab, transform.position, Quaternion.identity);
+				
+			float randomTile = Random.Range (0f, 3f);
+			if (randomTile < 1) {
+				Instantiate (myPrefabs [0], transform.position, Quaternion.identity);
+			} else if (randomTile < 2) {
+				Instantiate (myPrefabs [1], transform.position, Quaternion.identity);
+			} else {
+				Instantiate (myPrefabs[2], transform.position, Quaternion.identity);
+			}
+//			Instantiate (floorPrefab, transform.position, Quaternion.identity);
 			transform.Translate (new Vector3 (0f, 0f, 5f), Space.Self);
 
 			counter -= 1;
