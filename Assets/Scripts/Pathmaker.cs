@@ -18,6 +18,13 @@ public class Pathmaker : MonoBehaviour {
 
 	public static int globalFloorCount = 0;
 
+	GameObject gameManager;
+	GameManager gmScript;
+//	float minX;
+//	float maxX;
+//	float minZ;
+//	float maxZ;
+
 	// Use this for initialization
 	void Start () {
 		counter = 0;
@@ -26,7 +33,8 @@ public class Pathmaker : MonoBehaviour {
 		probToSpawn = Random.Range (0.98f, 0.99f);
 		lifeSpan = Random.Range (30, 35);
 
-
+		gameManager = GameObject.Find ("Game Manager");
+		gmScript = gameManager.GetComponent<GameManager> ();
 		//this.gameObject.SetActive (true);
 	}
 		
@@ -46,12 +54,48 @@ public class Pathmaker : MonoBehaviour {
 			}
 				
 			float randomTile = Random.Range (0f, 3f);
-			if (randomTile < 1) {
+			if (randomTile < 0.5f) {
 				Instantiate (myPrefabs [0], transform.position, Quaternion.identity);
-			} else if (randomTile < 2) {
+				if (this.transform.position.x < gmScript.negativeX) {
+					gmScript.negativeX = this.transform.position.x;
+				} 
+				if (this.transform.position.x > gmScript.positiveX) {
+					gmScript.positiveX = this.transform.position.x;
+				}
+				if (this.transform.position.z < gmScript.negativeZ) {
+					gmScript.negativeZ = this.transform.position.z;
+				}
+				if (this.transform.position.z > gmScript.negativeZ) {
+					gmScript.negativeZ = this.transform.position.z;
+				}
+			} else if (randomTile < 0.7f) {
 				Instantiate (myPrefabs [1], transform.position, Quaternion.identity);
+				if (this.transform.position.x < gmScript.negativeX) {
+					gmScript.negativeX = this.transform.position.x;
+				} 
+				if (this.transform.position.x > gmScript.positiveX) {
+					gmScript.positiveX = this.transform.position.x;
+				}
+				if (this.transform.position.z < gmScript.negativeZ) {
+					gmScript.negativeZ = this.transform.position.z;
+				}
+				if (this.transform.position.z > gmScript.negativeZ) {
+					gmScript.negativeZ = this.transform.position.z;
+				}
 			} else {
 				Instantiate (myPrefabs[2], transform.position, Quaternion.identity);
+				if (this.transform.position.x < gmScript.negativeX) {
+					gmScript.negativeX = this.transform.position.x;
+				} 
+				if (this.transform.position.x > gmScript.positiveX) {
+					gmScript.positiveX = this.transform.position.x;
+				}
+				if (this.transform.position.z < gmScript.negativeZ) {
+					gmScript.negativeZ = this.transform.position.z;
+				}
+				if (this.transform.position.z > gmScript.negativeZ) {
+					gmScript.negativeZ = this.transform.position.z;
+				}
 			}
 //			Instantiate (floorPrefab, transform.position, Quaternion.identity);
 			transform.Translate (new Vector3 (0f, 0f, 5f), Space.Self);
