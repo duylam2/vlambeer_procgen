@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour {
 	public float negativeZ;
 	public float positiveZ;
 
-
 	// Use this for initialization
 	void Start () {
 		Pathmaker.globalFloorCount = 0;
